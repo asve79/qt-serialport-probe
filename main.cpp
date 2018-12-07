@@ -28,7 +28,7 @@ int openport(){
     if(fd == -1)						/* Error Checking */
            printf("\n  Error! in Opening ttyUSB0  ");
     else
-           printf("\n  ttyUSB0 Opened Successfully ");
+           printf("\n  ttyUSB0 Opened Successfully %d", fd);
 
     return fd;
 }
@@ -40,8 +40,8 @@ int initport(int fd){
 
     tcgetattr(fd, &SerialPortSettings);	/* Get the current attributes of the Serial port */
 
-    cfsetispeed(&SerialPortSettings,B9600); /* Set Read  Speed as 9600                       */
-    cfsetospeed(&SerialPortSettings,B9600); /* Set Write Speed as 9600                       */
+    cfsetispeed(&SerialPortSettings,B115200); /* Set Read  Speed as 9600                       */
+    cfsetospeed(&SerialPortSettings,B115200); /* Set Write Speed as 9600                       */
 
     SerialPortSettings.c_cflag &= ~PARENB;   /* Disables the Parity Enable bit(PARENB),So No Parity   */
     SerialPortSettings.c_cflag &= ~CSTOPB;   /* CSTOPB = 2 Stop bits,here it is cleared so 1 Stop bit */
